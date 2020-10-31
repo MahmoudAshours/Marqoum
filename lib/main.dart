@@ -9,7 +9,7 @@ import 'package:marqoum/Screens/home_scaffold.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() async{
-    WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   final dir = await getApplicationDocumentsDirectory();
   Hive.init(dir.path);
   Hive.registerAdapter(MarqoumDBAdapter());
@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'مرقوم',
       localizationsDelegates: [
-        // Built-in localization of basic text for Material widgets
         GlobalMaterialLocalizations.delegate,
         // Built-in localization for text direction LTR/RTL
         GlobalWidgetsLocalizations.delegate,

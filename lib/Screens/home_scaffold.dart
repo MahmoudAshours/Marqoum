@@ -1,5 +1,8 @@
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:marqoum/Screens/book_content.dart';
+import 'package:marqoum/Screens/bookmarks.dart';
+import 'package:marqoum/Screens/notes.dart';
 
 class HomeScaffold extends StatefulWidget {
   @override
@@ -8,6 +11,7 @@ class HomeScaffold extends StatefulWidget {
 
 class _HomeScaffoldState extends State<HomeScaffold> {
   int _index = 2;
+  final _pages = List.unmodifiable([Notes(), Bookmarks(), BookContents()]);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +38,6 @@ class _HomeScaffoldState extends State<HomeScaffold> {
                     ),
                     FloatingNavbar(
                         backgroundColor: Color(0xffd9d1c0),
-                        family: 'NeoSans',
                         borderRadius: 50,
                         selectedBackgroundColor: Color(0xffd49448),
                         itemBorderRadius: 50,
@@ -44,9 +47,12 @@ class _HomeScaffoldState extends State<HomeScaffold> {
                         selectedItemColor: Colors.white,
                         unselectedItemColor: Color(0xff493628),
                         items: [
-                          FloatingNavbarItem(title: 'الملاحظات'),
-                          FloatingNavbarItem(title: 'علامات مرجعية'),
-                          FloatingNavbarItem(title: 'المحتويات'),
+                          FloatingNavbarItem(
+                              title: 'الملاحظات', icon: Icons.arrow_back),
+                          FloatingNavbarItem(
+                              title: 'علامات مرجعية', icon: Icons.arrow_back),
+                          FloatingNavbarItem(
+                              title: 'المحتويات', icon: Icons.arrow_back),
                         ],
                         currentIndex: _index,
                         onTap: (itemIndex) =>
@@ -55,6 +61,7 @@ class _HomeScaffoldState extends State<HomeScaffold> {
                 ),
               ),
             ),
+            _pages[_index]
           ],
         ),
       ),
