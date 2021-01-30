@@ -6,17 +6,17 @@ import 'package:marqoum/Provider/providerdb.dart';
 import 'package:provider/provider.dart';
 
 class BookmarkPdf extends StatelessWidget {
-  final int index;
   final int currentPage;
-  BookmarkPdf({@required this.index, @required this.currentPage});
+  BookmarkPdf({@required this.currentPage});
   @override
   Widget build(BuildContext context) {
     final _bloc = Provider.of<ProviderDB>(context);
     final hive = Hive.box('MarqoumDB');
+    print(hive.length);
+
     return ValueListenableBuilder(
       valueListenable: hive.listenable(),
       builder: (_, Box snapshot, Widget child) {
-        print(hive.length);
         final MarqoumDB _pdf = hive.getAt(0);
         return GestureDetector(
           onTap: () => bookmark(_bloc, _pdf),
@@ -35,14 +35,12 @@ class BookmarkPdf extends StatelessWidget {
         _bloc.addBookmark(
           false,
           currPage: currentPage,
-          index: index,
           snapshot: _pdf,
         );
       } else {
         _bloc.addBookmark(
           true,
           currPage: currentPage,
-          index: index,
           snapshot: _pdf,
         );
       }
@@ -50,7 +48,6 @@ class BookmarkPdf extends StatelessWidget {
       _bloc.addBookmark(
         true,
         currPage: currentPage,
-        index: index,
         snapshot: _pdf,
       );
     }

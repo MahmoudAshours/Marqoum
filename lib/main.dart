@@ -9,14 +9,24 @@ import 'package:marqoum/Provider/providerdb.dart';
 import 'package:marqoum/Screens/home_scaffold.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final dir = await getApplicationDocumentsDirectory();
   Hive.init(dir.path);
   Hive.registerAdapter(MarqoumDBAdapter());
-  await Hive.openBox('MarqoumDB');
+  final _db = await Hive.openBox('MarqoumDB');
+  _createDatabase(_db);
   runApp(MyApp());
+}
+
+void _createDatabase(Box box) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  if (prefs.getBool('first_time') == null) {
+    prefs.setBool('first_time', true);
+    box.add(MarqoumDB());
+  }
 }
 
 class MyApp extends StatelessWidget {

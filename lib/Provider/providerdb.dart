@@ -3,25 +3,23 @@ import 'package:hive/hive.dart';
 import 'package:marqoum/Hive/database.dart';
 
 class ProviderDB with ChangeNotifier {
-  void addBookmark(bool bookmark,
-      {int index, MarqoumDB snapshot, int currPage}) {
-    Hive.box('pdfDB').putAt(
-      index,
+  void addBookmark(bool bookmark, {MarqoumDB snapshot, int currPage}) {
+    Hive.box('MarqoumDB').putAt(
+      0,
       MarqoumDB(
         lastVisitedPage: snapshot.lastVisitedPage,
         pageNote: snapshot.pageNote,
-        bookmarked: _listBookmark(snapshot, index, currPage, bookmark),
+        bookmarked: _listBookmark(snapshot, currPage, bookmark),
       ),
     );
   }
 
-  List<int> _listBookmark(
-      MarqoumDB snapshot, int index, int currentPage, bool bookmark) {
+  List<int> _listBookmark(MarqoumDB snapshot, int currentPage, bool bookmark) {
     if (snapshot.bookmarked != null) {
       if (bookmark) {
-        return [currentPage, ...Hive.box('pdfDB')?.getAt(index)?.bookmarked];
+        return [currentPage, ...Hive.box('MarqoumDB')?.getAt(0)?.bookmarked];
       } else {
-        return [...Hive.box('pdfDB')?.getAt(index)?.bookmarked]
+        return [...Hive.box('MarqoumDB')?.getAt(0)?.bookmarked]
           ..remove(currentPage);
       }
     } else {
@@ -30,7 +28,7 @@ class ProviderDB with ChangeNotifier {
   }
 
   Future<void> updateLastSeen(MarqoumDB snapshot, int index) {
-    return Hive.box('pdfDB').putAt(
+    return Hive.box('MarqoumDB').putAt(
       index,
       MarqoumDB(
         lastVisitedPage: snapshot.lastVisitedPage,
