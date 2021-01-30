@@ -20,13 +20,12 @@ class _PDFScreenState extends State<PDFScreen> {
   @override
   void initState() {
     pdfController = PdfController(
-      document: PdfDocument.openAsset('assets/legends.pdf'),
-      initialPage: 10,
-      viewportFraction: 1.3
-    );
+        document: PdfDocument.openAsset('assets/legends.pdf'),
+        initialPage: 1,
+        viewportFraction: 1.3);
     Future.delayed(
         Duration(milliseconds: 100),
-        () => pdfController.animateToPage(10,
+        () => pdfController.animateToPage(1,
             duration: Duration(milliseconds: 500), curve: Curves.ease));
 
     super.initState();
@@ -43,12 +42,15 @@ class _PDFScreenState extends State<PDFScreen> {
           color: const Color(0xff26292D),
           child: RepaintBoundary(
             child: Stack(
+              textDirection: TextDirection.rtl,
               children: <Widget>[
                 Positioned(
                   child: GestureDetector(
                     onTap: () => setState(
                         () => _opacity == 0 ? _opacity = 1 : _opacity = 0),
                     child: PdfView(
+                      scrollDirection: Axis.horizontal,
+                      reverse: true,
                       controller: pdfController,
                     ),
                   ),
