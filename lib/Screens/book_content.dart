@@ -19,7 +19,7 @@ class BookContents extends StatelessWidget {
               visualDensity: VisualDensity.comfortable,
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => PDFScreen(index: index),
+                  builder: (context) => PDFScreen(pageNumber: 0),
                 ),
               ),
             ),

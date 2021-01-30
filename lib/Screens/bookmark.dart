@@ -12,7 +12,6 @@ class BookmarkPdf extends StatelessWidget {
   Widget build(BuildContext context) {
     final _bloc = Provider.of<ProviderDB>(context);
     final hive = Hive.box('MarqoumDB');
-    print(hive.length);
 
     return ValueListenableBuilder(
       valueListenable: hive.listenable(),
@@ -51,6 +50,7 @@ class BookmarkPdf extends StatelessWidget {
         snapshot: _pdf,
       );
     }
+    print(_pdf.bookmarked);
   }
 
   Color _bookmarkColorChecker(MarqoumDB _pdf) {

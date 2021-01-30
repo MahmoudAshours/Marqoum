@@ -2,22 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:marqoum/Screens/bookmark.dart';
-import 'package:marqoum/Screens/bookmarks.dart';
 import 'package:native_pdf_view/native_pdf_view.dart';
 
 class PDFScreen extends StatefulWidget {
-  final int index;
-  PDFScreen({this.index});
+  final int pageNumber;
+  PDFScreen({this.pageNumber});
   @override
   _PDFScreenState createState() => _PDFScreenState();
 }
 
 class _PDFScreenState extends State<PDFScreen> {
-  int index;
   PdfController pdfController;
-
-  int currentPage = 0;
+  int _currentPage;
   double _opacity = 1;
+
   @override
   void initState() {
     pdfController = PdfController(
@@ -26,7 +24,7 @@ class _PDFScreenState extends State<PDFScreen> {
         viewportFraction: 1.3);
     Future.delayed(
         Duration(milliseconds: 100),
-        () => pdfController.animateToPage(1,
+        () => pdfController.animateToPage(widget.pageNumber,
             duration: Duration(milliseconds: 500), curve: Curves.ease));
 
     super.initState();
@@ -51,6 +49,13 @@ class _PDFScreenState extends State<PDFScreen> {
                         () => _opacity == 0 ? _opacity = 1 : _opacity = 0),
                     child: PdfView(
                       scrollDirection: Axis.horizontal,
+                      onDocumentLoaded: (d) {
+                        setState(() {
+                          _currentPage = widget.pageNumber;
+                        });
+                      },
+                      onPageChanged: (int page) =>
+                          setState(() => _currentPage = page),
                       reverse: true,
                       controller: pdfController,
                     ),
@@ -154,7 +159,7 @@ class _PDFScreenState extends State<PDFScreen> {
                         children: [
                           Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: BookmarkPdf(currentPage: currentPage)),
+                              child: BookmarkPdf(currentPage: _currentPage)),
                           Material(
                             type: MaterialType.transparency,
                             child: Text(
