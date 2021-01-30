@@ -5,10 +5,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:marqoum/Hive/database.dart';
+import 'package:marqoum/Provider/providerdb.dart';
 import 'package:marqoum/Screens/home_scaffold.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final dir = await getApplicationDocumentsDirectory();
   Hive.init(dir.path);
@@ -20,17 +22,22 @@ void main() async{
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'مرقوم',
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        // Built-in localization for text direction LTR/RTL
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        DefaultCupertinoLocalizations.delegate
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ProviderDB()),
       ],
-      locale: Locale('ar'),
-      home: HomePage(),
+      child: MaterialApp(
+        title: 'مرقوم',
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          // Built-in localization for text direction LTR/RTL
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          DefaultCupertinoLocalizations.delegate
+        ],
+        locale: Locale('ar'),
+        home: HomePage(),
+      ),
     );
   }
 }

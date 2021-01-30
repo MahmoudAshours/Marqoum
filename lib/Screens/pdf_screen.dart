@@ -1,9 +1,8 @@
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// ignore: implementation_imports
-import 'package:flutter_spinkit/src/chasing_dots.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:marqoum/Screens/bookmark.dart';
 
 class PDFScreen extends StatefulWidget {
   final int index;
@@ -16,10 +15,11 @@ class _PDFScreenState extends State<PDFScreen> {
   int index;
   PDFDocument doc;
   PageController controller;
-
+  int currentPage = 0;
   double _opacity = 1;
   @override
   void initState() {
+    print(index);
     initPage();
     super.initState();
   }
@@ -39,14 +39,14 @@ class _PDFScreenState extends State<PDFScreen> {
             leading: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                FaIcon(
-                  FontAwesomeIcons.arrowLeft,
-                  color: Color(0xff493628),
+                GestureDetector(
+                  onTap: () => Navigator.of(context).pop(),
+                  child: FaIcon(
+                    FontAwesomeIcons.arrowLeft,
+                    color: Color(0xff493628),
+                  ),
                 ),
-                Icon(
-                  Icons.bookmark_border,
-                  color: Color(0xffd49448),
-                )
+                BookmarkPdf(index: 0, currentPage: currentPage),
               ],
             ),
           ),
