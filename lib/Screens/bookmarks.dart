@@ -53,9 +53,8 @@ class Bookmarks extends StatelessWidget {
                                   ),
                                   onTap: () => Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (_) => PDFScreen(
-                                        pageNumber: pageNumber,
-                                      ),
+                                      builder: (_) =>
+                                          PDFScreen(pageNumber: pageNumber),
                                     ),
                                   ),
                                 );

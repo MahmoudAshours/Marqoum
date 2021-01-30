@@ -65,8 +65,8 @@ class _PDFScreenState extends State<PDFScreen> {
                     opacity: _opacity,
                     duration: Duration(seconds: 1),
                     child: Container(
-                      width: 90,
-                      height: 90,
+                      width: 50,
+                      height: 50,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -78,17 +78,6 @@ class _PDFScreenState extends State<PDFScreen> {
                               size: 30,
                             ),
                           ),
-                          Material(
-                            type: MaterialType.transparency,
-                            child: Text(
-                              'ملاحظة',
-                              style: TextStyle(
-                                color: Color(0xff493628),
-                                fontFamily: 'NeoSans',
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          )
                         ],
                       ),
                       decoration: BoxDecoration(
