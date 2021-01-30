@@ -49,11 +49,8 @@ class _PDFScreenState extends State<PDFScreen> {
                         () => _opacity == 0 ? _opacity = 1 : _opacity = 0),
                     child: PdfView(
                       scrollDirection: Axis.horizontal,
-                      onDocumentLoaded: (d) {
-                        setState(() {
-                          _currentPage = widget.pageNumber;
-                        });
-                      },
+                      onDocumentLoaded: (_) =>
+                          setState(() => _currentPage = widget.pageNumber),
                       onPageChanged: (int page) =>
                           setState(() => _currentPage = page),
                       reverse: true,
