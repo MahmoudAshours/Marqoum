@@ -38,7 +38,7 @@ class _HomeScaffoldState extends State<HomeScaffold> {
                 child: Column(
                   children: [
                     Text(
-                      'المرقوم',
+                      '${AppLocalizations.of(context).translate('marqoum')}',
                       style: TextStyle(
                           color: Color(0xff493628), fontFamily: 'NeoSans'),
                     ),
@@ -62,7 +62,9 @@ class _HomeScaffoldState extends State<HomeScaffold> {
                                 '${AppLocalizations.of(context).translate('bookmarks')}',
                             icon: Icons.arrow_back),
                         FloatingNavbarItem(
-                            title: '${AppLocalizations.of(context).translate('content')}', icon: Icons.arrow_back),
+                            title:
+                                '${AppLocalizations.of(context).translate('content')}',
+                            icon: Icons.arrow_back),
                       ],
                       currentIndex: _index,
                       onTap: (itemIndex) => setState(() => _index = itemIndex),

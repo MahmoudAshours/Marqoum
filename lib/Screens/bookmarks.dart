@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:marqoum/Screens/pdf_screen.dart';
+import 'package:marqoum/localization/app_localiztion.dart';
 
 class Bookmarks extends StatelessWidget {
   @override
@@ -28,7 +29,7 @@ class Bookmarks extends StatelessWidget {
                         children: <Widget>[
                           Center(
                             child: Text(
-                              'ليس لديك مفضلة إلى الآن',
+                              '${AppLocalizations.of(context).translate('bookmark_message')}',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w600,
@@ -52,8 +53,7 @@ class Bookmarks extends StatelessWidget {
                                   child: ListTile(
                                     trailing: FaIcon(FontAwesomeIcons.bookmark),
                                     title: Text(
-                                      'الصفحة رقم ${pageNumber + 1}',
-                                      textDirection: TextDirection.rtl,
+                                      '${AppLocalizations.of(context).translate('page_number')} ${pageNumber + 1}',
                                       style: TextStyle(color: Colors.black),
                                     ),
                                     onTap: () => Navigator.of(context).push(

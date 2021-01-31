@@ -2,5 +2,7 @@
     "notes": "Notes",
     "bookmarks": "Bookmarks",
     "content": "Content",
-    "marqoum": "Marqoum"
+    "marqoum": "Marqoum",
+    "bookmark_message": "You don't have bookmarks yet",
+    "page_number": "Page number"
 }

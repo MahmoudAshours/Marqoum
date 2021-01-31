@@ -1,6 +1,8 @@
 {
     "notes": "الملاحظات",
-    "bookmarks": "علامات مرجعية",
+    "bookmarks": "المفضلة",
     "content": "المحتويات",
-    "marqoum": "المرقوم"
+    "marqoum": "المرقوم",
+    "bookmark_message":"ليس لديك مفضلة إلى الآن",
+    "page_number":"الصفحة رقم"
 }
