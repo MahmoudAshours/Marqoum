@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:marqoum/Screens/book_content.dart';
 import 'package:marqoum/Screens/bookmarks.dart';
 import 'package:marqoum/Screens/notes.dart';
+import 'package:marqoum/localization/app_localiztion.dart';
+import 'package:marqoum/localization/localization_widget.dart';
 
 class HomeScaffold extends StatefulWidget {
   @override
@@ -15,6 +17,10 @@ class _HomeScaffoldState extends State<HomeScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Center(child: LocalizationWidget()),
+      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -37,26 +43,30 @@ class _HomeScaffoldState extends State<HomeScaffold> {
                           color: Color(0xff493628), fontFamily: 'NeoSans'),
                     ),
                     FloatingNavbar(
-                        backgroundColor: Color(0xffd9d1c0),
-                        borderRadius: 50,
-                        selectedBackgroundColor: Color(0xffd49448),
-                        itemBorderRadius: 50,
-                        padding: const EdgeInsets.all(0),
-                        fontSize: 18,
-                        iconSize: 0,
-                        selectedItemColor: Colors.white,
-                        unselectedItemColor: Color(0xff493628),
-                        items: [
-                          FloatingNavbarItem(
-                              title: 'الملاحظات', icon: Icons.arrow_back),
-                          FloatingNavbarItem(
-                              title: 'علامات مرجعية', icon: Icons.arrow_back),
-                          FloatingNavbarItem(
-                              title: 'المحتويات', icon: Icons.arrow_back),
-                        ],
-                        currentIndex: _index,
-                        onTap: (itemIndex) =>
-                            setState(() => _index = itemIndex)),
+                      backgroundColor: Color(0xffd9d1c0),
+                      borderRadius: 50,
+                      selectedBackgroundColor: Color(0xffd49448),
+                      itemBorderRadius: 50,
+                      padding: const EdgeInsets.all(0),
+                      fontSize: 18,
+                      iconSize: 0,
+                      selectedItemColor: Colors.white,
+                      unselectedItemColor: Color(0xff493628),
+                      items: [
+                        FloatingNavbarItem(
+                            title:
+                                '${AppLocalizations.of(context).translate('notes')}',
+                            icon: Icons.arrow_back),
+                        FloatingNavbarItem(
+                            title:
+                                '${AppLocalizations.of(context).translate('bookmarks')}',
+                            icon: Icons.arrow_back),
+                        FloatingNavbarItem(
+                            title: '${AppLocalizations.of(context).translate('content')}', icon: Icons.arrow_back),
+                      ],
+                      currentIndex: _index,
+                      onTap: (itemIndex) => setState(() => _index = itemIndex),
+                    ),
                   ],
                 ),
               ),

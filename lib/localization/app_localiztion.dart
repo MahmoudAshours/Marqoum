@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 
 class AppLocalizations {
   final Locale locale;
-
   AppLocalizations(this.locale);
   static const LocalizationsDelegate<AppLocalizations> delegate =
       _AppLocalizationsDelegate();

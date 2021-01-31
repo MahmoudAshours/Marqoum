@@ -12,6 +12,7 @@ class LocalProvider with ChangeNotifier {
     _appLocale = preferences.getString('language_code') != null
         ? Locale(preferences.getString('language_code'))
         : Locale('ar');
+    notifyListeners();
   }
 
   Locale get appLocal => _appLocale ?? _appLocale;

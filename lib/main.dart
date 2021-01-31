@@ -37,7 +37,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ProviderDB()),
-        ChangeNotifierProvider(create: (_) => LocalProvider()),
       ],
       child: ChangeNotifierProvider<LocalProvider>(
         create: (_) => LocalProvider(),
@@ -50,6 +49,7 @@ class MyApp extends StatelessWidget {
               const Locale('ar', ''),
               const Locale('en', 'US'),
             ],
+            theme: ThemeData(fontFamily: 'NeoSans'),
             locale: localeSnapshot.appLocal,
             // These delegates make sure that the localization data for the proper language is loaded
             localizationsDelegates: [

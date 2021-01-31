@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:marqoum/Screens/pdf_screen.dart';
@@ -41,20 +42,25 @@ class Bookmarks extends StatelessWidget {
                     return Wrap(
                       children: <Widget>[
                         Container(
-                          height: 400,
+                          height: MediaQuery.of(context).size.height,
                           child: ListView(
                             children: snap.getAt(0).bookmarked.map<Widget>(
                               (int pageNumber) {
-                                return ListTile(
-                                  title: Text(
-                                    'الصفحة رقم ${pageNumber + 1}',
-                                    textDirection: TextDirection.rtl,
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  onTap: () => Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (_) =>
-                                          PDFScreen(pageNumber: pageNumber),
+                                return Container(
+                                  color: Color(0xffDAD2C7),
+                                  margin: EdgeInsets.only(top: 10),
+                                  child: ListTile(
+                                    trailing: FaIcon(FontAwesomeIcons.bookmark),
+                                    title: Text(
+                                      'الصفحة رقم ${pageNumber + 1}',
+                                      textDirection: TextDirection.rtl,
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    onTap: () => Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (_) =>
+                                            PDFScreen(pageNumber: pageNumber),
+                                      ),
                                     ),
                                   ),
                                 );

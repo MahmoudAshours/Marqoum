@@ -23,7 +23,7 @@ class LocalizationWidget extends StatelessWidget {
                 color: Colors.white),
           ),
           Text(
-            appLanguage.appLocal == Locale('ar') ? 'ع' : 'E',
+            appLanguage.appLocal == Locale('ar') ? 'ع' : 'e',
             style: TextStyle(color: Colors.white),
           ),
         ],
