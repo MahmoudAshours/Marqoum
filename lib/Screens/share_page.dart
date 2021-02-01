@@ -30,7 +30,10 @@ class SharePage extends StatelessWidget {
     final byteData = await image.toByteData(format: ImageByteFormat.png);
     final pngBytes = byteData.buffer.asUint8List();
     await Share.file(
-        'Share Copia PDF page', 'copiaPdf.jpg', pngBytes, 'image/jpg',
-        text: "Check this Page! #Copia");
+      'Share page',
+      'marqoum.jpg',
+      pngBytes,
+      'image/jpg',
+    );
   }
 }
