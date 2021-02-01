@@ -8,9 +8,8 @@ class LocalizationWidget extends StatelessWidget {
     var appLanguage = Provider.of<LocalProvider>(context);
 
     return Container(
-      width: 70,
-      height: 50,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Expanded(
             child: IconButton(
@@ -20,11 +19,11 @@ class LocalizationWidget extends StatelessWidget {
                       : appLanguage.changeLanguage(Locale("ar"));
                 },
                 icon: Icon(Icons.language),
-                color: Colors.white),
+                color: Colors.black),
           ),
           Text(
-            appLanguage.appLocal == Locale('ar') ? 'ع' : 'e',
-            style: TextStyle(color: Colors.white),
+            appLanguage.appLocal == Locale('ar') ? 'ع' : 'en',
+            style: TextStyle(color: Colors.black),
           ),
         ],
       ),

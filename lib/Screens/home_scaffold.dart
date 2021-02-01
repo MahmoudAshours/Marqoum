@@ -2,7 +2,6 @@ import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:marqoum/Screens/book_content.dart';
 import 'package:marqoum/Screens/bookmarks.dart';
-import 'package:marqoum/Screens/notes.dart';
 import 'package:marqoum/localization/app_localiztion.dart';
 import 'package:marqoum/localization/localization_widget.dart';
 
@@ -12,15 +11,12 @@ class HomeScaffold extends StatefulWidget {
 }
 
 class _HomeScaffoldState extends State<HomeScaffold> {
-  int _index = 1;
-  final _pages = List.unmodifiable([Bookmarks(), BookContents()]);
+  int _index = 0;
+  final _pages = List.unmodifiable([BookContents(), Bookmarks()]);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Center(child: LocalizationWidget()),
-      ),
+   
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -34,13 +30,15 @@ class _HomeScaffoldState extends State<HomeScaffold> {
               pinned: true,
               toolbarHeight: 130,
               elevation: 4,
+              centerTitle: true,
+              leading: LocalizationWidget(),
               shadowColor: Colors.black,
               backgroundColor: Color(0xffedece8),
               title: SafeArea(
                 child: Column(
                   children: [
                     Text(
-                      '${AppLocalizations.of(context).translate('marqoum')}',
+                      '${AppLocalizations.of(context).translate('moslmoon')}',
                       style: TextStyle(
                           color: Color(0xff493628), fontFamily: 'NeoSans'),
                     ),
@@ -57,12 +55,11 @@ class _HomeScaffoldState extends State<HomeScaffold> {
                       items: [
                         FloatingNavbarItem(
                             title:
-                                '${AppLocalizations.of(context).translate('bookmarks')}',
+                                '${AppLocalizations.of(context).translate('content')}',
                             icon: Icons.arrow_back),
-                         
                         FloatingNavbarItem(
                             title:
-                                '${AppLocalizations.of(context).translate('content')}',
+                                '${AppLocalizations.of(context).translate('bookmarks')}',
                             icon: Icons.arrow_back),
                       ],
                       currentIndex: _index,
