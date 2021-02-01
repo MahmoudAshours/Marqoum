@@ -6,7 +6,7 @@ import 'package:marqoum/Screens/pdf_screen.dart';
 import 'package:marqoum/localization/app_localiztion.dart';
 
 class BookContents extends StatelessWidget {
-  loadcsv(context) async {
+  Future<List<List>> loadcsv(context) async {
     final myData = await rootBundle.loadString(
         "assets/index/${AppLocalizations.of(context).locale.languageCode}.csv");
 
@@ -19,45 +19,42 @@ class BookContents extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: loadcsv(context),
-      builder: (_, snap) => !snap.hasData
+      builder: (_, AsyncSnapshot<List<List>> snap) => !snap.hasData
           ? SliverToBoxAdapter()
           : SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  for (var i = 0; i < snap.data.length; i++)
+                  for (var item
+                      in snap.data.where((element) => element[2] == 1))
                     Container(
                       color: Color(0xffDAD2C7),
                       margin: EdgeInsets.only(top: 10),
-                      child: snap.data[i][2] == 1
-                          ? ListTile(
-                              trailing: FaIcon(
-                                FontAwesomeIcons.bookReader,
-                                color: Colors.orange,
-                              ),
-                              title: Text(
-                                '${snap.data[i][0]}',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              tileColor: Colors.black,
-                              onTap: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => PDFScreen(
-                                    pageNumber: int.parse('${snap.data[i][1]}'),
+                      child: ExpansionTile(
+                        children: snap.data
+                            .where((element) =>
+                                 element[3] == item[1])
+                            .toList()
+                            .map(
+                              (data) => ListTile(
+                                title: Text('${data[0]}'),
+                                onTap: () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_) =>
+                                        PDFScreen(pageNumber: data[1]),
                                   ),
                                 ),
                               ),
                             )
-                          : ListTile(
-                              trailing: FaIcon(FontAwesomeIcons.book),
-                              title: Text('${snap.data[i][0]}'),
-                              onTap: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => PDFScreen(
-                                    pageNumber: int.parse('${snap.data[i][1]}'),
-                                  ),
-                                ),
-                              ),
-                            ),
+                            .toList(),
+                        trailing: FaIcon(
+                          FontAwesomeIcons.bookReader,
+                          color: Colors.orange,
+                        ),
+                        title: Text(
+                          '${item[0]}',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
                     )
                 ],
               ),
