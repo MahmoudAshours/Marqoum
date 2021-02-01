@@ -30,6 +30,8 @@ class _HomeScaffoldState extends State<HomeScaffold> {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
+              floating: true,
+              pinned: true,
               toolbarHeight: 130,
               elevation: 4,
               shadowColor: Colors.black,

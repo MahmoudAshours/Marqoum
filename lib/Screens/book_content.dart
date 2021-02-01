@@ -29,17 +29,36 @@ class BookContents extends StatelessWidget {
                     Container(
                       color: Color(0xffDAD2C7),
                       margin: EdgeInsets.only(top: 10),
-                      child: ListTile(
-                        trailing: FaIcon(FontAwesomeIcons.book),
-                        title: Text('${snap.data[i][0]}'),
-                        onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => PDFScreen(
-                              pageNumber: int.parse('${snap.data[i][1]}'),
+                      child: snap.data[i][2] == 1
+                          ? ListTile(
+                              trailing: FaIcon(
+                                FontAwesomeIcons.bookReader,
+                                color: Colors.orange,
+                              ),
+                              title: Text(
+                                '${snap.data[i][0]}',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              tileColor: Colors.black,
+                              onTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => PDFScreen(
+                                    pageNumber: int.parse('${snap.data[i][1]}'),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : ListTile(
+                              trailing: FaIcon(FontAwesomeIcons.book),
+                              title: Text('${snap.data[i][0]}'),
+                              onTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => PDFScreen(
+                                    pageNumber: int.parse('${snap.data[i][1]}'),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
                     )
                 ],
               ),

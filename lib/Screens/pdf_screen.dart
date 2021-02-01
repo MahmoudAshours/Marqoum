@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:marqoum/Models/changable_assets.dart';
 import 'package:marqoum/Screens/bookmark.dart';
+import 'package:marqoum/localization/app_localiztion.dart';
 import 'package:native_pdf_view/native_pdf_view.dart';
 
 class PDFScreen extends StatefulWidget {
@@ -18,21 +19,25 @@ class _PDFScreenState extends State<PDFScreen> {
   double _opacity = 1;
 
   @override
-  void initState() {
+  void didChangeDependencies() {
     pdfController = PdfController(
-        document: PdfDocument.openAsset('${ChangableAssets.assetNameArabic}'),
+        document: PdfDocument.openAsset(
+            'assets/${AppLocalizations.of(context).locale.languageCode}.pdf'),
         initialPage: 1,
         viewportFraction: 1.3);
     Future.delayed(
-      Duration(milliseconds: 100),
+      Duration(seconds: 1),
       () => pdfController.animateToPage(
         widget.pageNumber,
-        duration: Duration(milliseconds: 500),
-        curve: Curves.ease,
+        duration: Duration(milliseconds: 100),
+        curve: Curves.decelerate,
       ),
     );
+    setState(() {
+      
+    });
 
-    super.initState();
+    super.didChangeDependencies();
   }
 
   @override
