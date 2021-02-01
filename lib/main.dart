@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:marqoum/Hive/database.dart';
+import 'package:marqoum/Provider/pdfscreen_bloc.dart';
 import 'package:marqoum/Provider/providerdb.dart';
 import 'package:marqoum/Screens/home_scaffold.dart';
 import 'package:marqoum/localization/app_localiztion.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ProviderDB()),
+        ChangeNotifierProvider(create: (_) => PDFScreenBloc()),
       ],
       child: ChangeNotifierProvider<LocalProvider>(
         create: (_) => LocalProvider(),

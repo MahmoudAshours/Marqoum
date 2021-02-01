@@ -12,8 +12,8 @@ class HomeScaffold extends StatefulWidget {
 }
 
 class _HomeScaffoldState extends State<HomeScaffold> {
-  int _index = 2;
-  final _pages = List.unmodifiable([Notes(), Bookmarks(), BookContents()]);
+  int _index = 1;
+  final _pages = List.unmodifiable([Bookmarks(), BookContents()]);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,20 +49,17 @@ class _HomeScaffoldState extends State<HomeScaffold> {
                       borderRadius: 50,
                       selectedBackgroundColor: Color(0xffd49448),
                       itemBorderRadius: 50,
-                      padding: const EdgeInsets.all(0),
                       fontSize: 18,
+                      width: MediaQuery.of(context).size.width,
                       iconSize: 0,
                       selectedItemColor: Colors.white,
                       unselectedItemColor: Color(0xff493628),
                       items: [
                         FloatingNavbarItem(
                             title:
-                                '${AppLocalizations.of(context).translate('notes')}',
-                            icon: Icons.arrow_back),
-                        FloatingNavbarItem(
-                            title:
                                 '${AppLocalizations.of(context).translate('bookmarks')}',
                             icon: Icons.arrow_back),
+                         
                         FloatingNavbarItem(
                             title:
                                 '${AppLocalizations.of(context).translate('content')}',

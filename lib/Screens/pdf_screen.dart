@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:marqoum/Models/changable_assets.dart';
+import 'package:marqoum/Provider/pdfscreen_bloc.dart';
 import 'package:marqoum/Screens/bookmark.dart';
+import 'package:marqoum/Screens/share_page.dart';
 import 'package:marqoum/localization/app_localiztion.dart';
 import 'package:native_pdf_view/native_pdf_view.dart';
+import 'package:provider/provider.dart';
 
 class PDFScreen extends StatefulWidget {
   final int pageNumber;
@@ -29,19 +31,19 @@ class _PDFScreenState extends State<PDFScreen> {
       Duration(seconds: 1),
       () => pdfController.animateToPage(
         widget.pageNumber,
-        duration: Duration(milliseconds: 100),
+        duration: Duration(milliseconds: 200),
         curve: Curves.decelerate,
       ),
     );
-    setState(() {
-      
-    });
+    setState(() {});
 
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
+    final _pdfProvider = Provider.of<PDFScreenBloc>(context);
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
@@ -49,16 +51,19 @@ class _PDFScreenState extends State<PDFScreen> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           color: const Color(0xff26292D),
-          child: RepaintBoundary(
-            child: Stack(
-              textDirection: TextDirection.rtl,
-              children: <Widget>[
-                Positioned(
-                  child: GestureDetector(
-                    onTap: () => setState(
-                        () => _opacity == 0 ? _opacity = 1 : _opacity = 0),
+          child: Stack(
+            textDirection: TextDirection.rtl,
+            children: <Widget>[
+              Positioned(
+                child: GestureDetector(
+                  onTap: () => setState(
+                      () => _opacity == 0 ? _opacity = 1 : _opacity = 0),
+                  child: RepaintBoundary(
+                    key: _pdfProvider.scr,
                     child: PdfView(
                       scrollDirection: Axis.horizontal,
+                      documentLoader:
+                          Center(child: CircularProgressIndicator()),
                       onDocumentLoaded: (_) =>
                           setState(() => _currentPage = widget.pageNumber),
                       onPageChanged: (int page) =>
@@ -67,96 +72,61 @@ class _PDFScreenState extends State<PDFScreen> {
                     ),
                   ),
                 ),
-                Positioned(
-                  right: 0,
-                  top: 150,
-                  child: AnimatedOpacity(
-                    opacity: _opacity,
-                    duration: Duration(seconds: 1),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
+              ),
+              Positioned(
+                right: 0,
+                top: 250,
+                child: AnimatedOpacity(
+                  opacity: _opacity,
+                  duration: Duration(seconds: 1),
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SharePage(),
+                        ),
+                      ],
+                    ),
+                    decoration: BoxDecoration(
+                      color: Color(0xffd49448),
+                      borderRadius: BorderRadius.horizontal(
+                        left: Radius.elliptical(20, 20),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                right: 0,
+                top: 350,
+                child: AnimatedOpacity(
+                  opacity: _opacity,
+                  duration: Duration(seconds: 1),
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: FaIcon(
-                              FontAwesomeIcons.clipboardList,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                          ),
-                        ],
-                      ),
-                      decoration: BoxDecoration(
-                        color: Color(0xffd49448),
-                        borderRadius: BorderRadius.horizontal(
-                          left: Radius.elliptical(20, 20),
-                        ),
+                            child: BookmarkPdf(currentPage: _currentPage)),
+                      ],
+                    ),
+                    decoration: BoxDecoration(
+                      color: Color(0xffd49448),
+                      borderRadius: BorderRadius.horizontal(
+                        left: Radius.elliptical(20, 20),
                       ),
                     ),
                   ),
                 ),
-                Positioned(
-                  right: 0,
-                  top: 250,
-                  child: AnimatedOpacity(
-                    opacity: _opacity,
-                    duration: Duration(seconds: 1),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: FaIcon(
-                              FontAwesomeIcons.shareSquare,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                          ),
-                        ],
-                      ),
-                      decoration: BoxDecoration(
-                        color: Color(0xffd49448),
-                        borderRadius: BorderRadius.horizontal(
-                          left: Radius.elliptical(20, 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  right: 0,
-                  top: 350,
-                  child: AnimatedOpacity(
-                    opacity: _opacity,
-                    duration: Duration(seconds: 1),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: BookmarkPdf(currentPage: _currentPage)),
-                        ],
-                      ),
-                      decoration: BoxDecoration(
-                        color: Color(0xffd49448),
-                        borderRadius: BorderRadius.horizontal(
-                          left: Radius.elliptical(20, 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

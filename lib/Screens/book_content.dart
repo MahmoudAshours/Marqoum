@@ -12,7 +12,6 @@ class BookContents extends StatelessWidget {
 
     List<List<dynamic>> rowsAsListOfValues =
         const CsvToListConverter().convert(myData);
-    print(rowsAsListOfValues);
     return rowsAsListOfValues;
   }
 
