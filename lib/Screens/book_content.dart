@@ -31,8 +31,7 @@ class BookContents extends StatelessWidget {
                       margin: EdgeInsets.only(top: 10),
                       child: ExpansionTile(
                         children: snap.data
-                            .where((element) =>
-                                 element[3] == item[1])
+                            .where((element) => element[3] == item[1])
                             .toList()
                             .map(
                               (data) => ListTile(
@@ -40,7 +39,7 @@ class BookContents extends StatelessWidget {
                                 onTap: () => Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (_) =>
-                                        PDFScreen(pageNumber: data[1]+1),
+                                        PDFScreen(pageNumber: data[1] + 1),
                                   ),
                                 ),
                               ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:marqoum/Provider/pdfscreen_bloc.dart';
 import 'package:marqoum/Screens/bookmark.dart';
 import 'package:marqoum/Screens/share_page.dart';
