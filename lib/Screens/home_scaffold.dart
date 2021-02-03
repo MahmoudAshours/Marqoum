@@ -16,7 +16,6 @@ class _HomeScaffoldState extends State<HomeScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(

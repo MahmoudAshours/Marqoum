@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         child: Consumer<LocalProvider>(
           builder: (context, localeSnapshot, __) => MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Medical Case History',
+            title: 'Muslims in Estrangement countries',
             supportedLocales: [
               const Locale('ar', ''),
               const Locale('en', 'US'),

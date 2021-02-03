@@ -40,7 +40,7 @@ class BookContents extends StatelessWidget {
                                 onTap: () => Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (_) =>
-                                        PDFScreen(pageNumber: data[1]),
+                                        PDFScreen(pageNumber: data[1]+1),
                                   ),
                                 ),
                               ),
