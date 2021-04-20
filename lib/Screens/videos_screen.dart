@@ -9,11 +9,22 @@ class VideosScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           LinkPreviewer(
-            link: "https://www.linkedin.com/feed/",
+            link: "https://www.youtube.com/watch?v=gPBby-Wfn_4",
             direction: ContentDirection.horizontal,
           ),
+          Divider(),
           LinkPreviewer(
-            link: "https://www.linkedin.com/feed/",
+            link: "https://www.youtube.com/watch?v=7Ruw1iI6__s",
+            direction: ContentDirection.vertical,
+          ),
+          Divider(),
+          LinkPreviewer(
+            link: "https://www.youtube.com/watch?v=SmAswkauXNg",
+            direction: ContentDirection.vertical,
+          ),
+          Divider(),
+          LinkPreviewer(
+            link: "https://www.youtube.com/watch?v=MK71GDKj9oM",
             direction: ContentDirection.vertical,
           ),
         ],
