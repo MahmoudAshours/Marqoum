@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 import 'package:flutter/cupertino.dart';
+=======
+>>>>>>> f757580... Refactored
 import 'package:flutter/material.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive/hive.dart';
+<<<<<<< HEAD
+=======
+import 'package:flutter/cupertino.dart';
+>>>>>>> f757580... Refactored
 import 'package:marqoum/Hive/database.dart';
 import 'package:marqoum/Provider/pdfscreen_bloc.dart';
 import 'package:marqoum/Provider/providerdb.dart';
@@ -94,6 +101,7 @@ class HomePage extends StatefulWidget {
 class _MyHomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return InnerDrawer(
       key: _innerDrawerKey,
       onTapClose: true, // default false
@@ -211,4 +219,10 @@ class _MyHomePageState extends State<HomePage> {
   void _toggle() {
     _innerDrawerKey.currentState.toggle(direction: InnerDrawerDirection.end);
   }
+=======
+    return Scaffold(
+      body: HomeScaffold(),
+    );
+  }
+>>>>>>> f757580... Refactored
 }
