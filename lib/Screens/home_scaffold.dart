@@ -2,6 +2,7 @@ import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:marqoum/Screens/book_content.dart';
 import 'package:marqoum/Screens/bookmarks.dart';
+import 'package:marqoum/Screens/videos_screen.dart';
 import 'package:marqoum/localization/app_localiztion.dart';
 import 'package:marqoum/localization/localization_widget.dart';
 
@@ -12,7 +13,7 @@ class HomeScaffold extends StatefulWidget {
 
 class _HomeScaffoldState extends State<HomeScaffold> {
   int _index = 0;
-  final _pages = List.unmodifiable([BookContents(), Bookmarks()]);
+  final _pages = List.unmodifiable([BookContents(), Bookmarks(),VideosScreen()]);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +47,7 @@ class _HomeScaffoldState extends State<HomeScaffold> {
                       borderRadius: 50,
                       selectedBackgroundColor: Color(0xffd49448),
                       itemBorderRadius: 50,
-                      fontSize: 18,
+                      fontSize: 15,
                       width: MediaQuery.of(context).size.width,
                       iconSize: 0,
                       selectedItemColor: Colors.white,
@@ -59,6 +60,10 @@ class _HomeScaffoldState extends State<HomeScaffold> {
                         FloatingNavbarItem(
                             title:
                                 '${AppLocalizations.of(context).translate('bookmarks')}',
+                            icon: Icons.arrow_back),
+                              FloatingNavbarItem(
+                            title:
+                                '${AppLocalizations.of(context).translate('videos')}',
                             icon: Icons.arrow_back),
                       ],
                       currentIndex: _index,
