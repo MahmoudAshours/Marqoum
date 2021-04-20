@@ -7,7 +7,7 @@ class MarqoumDB {
   @HiveField(0)
   String pdfAsset;
   @HiveField(1)
-  List<int> bookmarked = new List<int>();
+  List<int> bookmarked = [];
   @HiveField(2)
   int lastVisitedPage;
   @HiveField(3)
